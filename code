@@ -1,0 +1,36 @@
+
+import java.util.*;
+
+public class algo {
+    public static void main(String[] args) {
+
+        int cloudlets[] = {10, 20, 30};
+        int vm[] = {2, 4};
+
+        boolean assigned[] = new boolean[3];
+
+        for (int c = 0; c < 3; c++) {
+            double min = 9999;
+            int task = -1, machine = -1;
+
+            for (int i = 0; i < 3; i++) {
+                if (!assigned[i]) {
+                    for (int j = 0; j < 2; j++) {
+                        double time = (double) cloudlets[i] / vm[j];
+
+                        if (time < min) {
+                            min = time;
+                            task = i;
+                            machine = j;
+                        }
+                    }
+                }
+            }
+
+            System.out.println("Cloudlet " + task +
+                    " assigned to VM " + machine);
+
+            assigned[task] = true;
+        }
+    }
+}
